@@ -2,40 +2,39 @@ import { MoviesList } from "components/MoviesList/MoviesList";
 import { Searchbar } from "components/SearchBar/SearchBar";
 import { useEffect } from "react";
 import { useState } from "react"
+import { useSearchParams } from 'react-router-dom';
 import { searchMovieFetch } from "services/Fetch";
 
 export const Movies = () => {
-    const [movie, setMovie] = useState('');
     const [page, setPage] = useState(1);
-    const [data, setData] = useState([]);
-    const [error, setError] = useState(null);
+    const [movies, setMovies] = useState([]);
+    const [searchParams, setSearchParams] = useSearchParams();
+    const movieName = searchParams.get("name") ?? "";
+
+    const updateQueryString = (name) => {
+        const nextParams = name !== "" ? { name } : {};
+        setSearchParams(nextParams);
+    };
 
     useEffect(() => {
-        if (!movie) {
+        if (movieName === '') {
             return;
         }
-
-        searchMovieFetch(movie, page)
-            .then(response => {
-                // console.log(response.data.results)
-                setData(prevData => [...prevData, ...response.data.results])
-            })
-            .catch(error => setError(error.message))
-    },[movie, page])
-
-    const handleSubmitForm = movie => {
-        setMovie(movie);
-        setPage(1);
-        setData([]);
-    }
-
+        async function fetchMovies() {
+            const movies = await searchMovieFetch(movieName, page);
+            console.log(movies);
+            setMovies(movies);
+        }
+        fetchMovies();
+    },[movieName, page])
+    
+    
     return (
         <div>
-            <Searchbar onSubmit={handleSubmitForm} />
+            <Searchbar value={movieName} onChange={updateQueryString} />
             <ul>
-                <MoviesList data={data} />
+                <MoviesList movies={movies} />
             </ul>
-            
         </div>
     )
 }
