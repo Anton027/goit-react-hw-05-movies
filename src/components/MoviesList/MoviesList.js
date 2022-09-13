@@ -6,9 +6,9 @@ export const MoviesList = ({ movies }) => {
         <>
             {movies.map(({ popularity,original_title,poster_path, original_name, first_air_date, id }) => 
                 <MovieItem key={id}
-                    poster={poster_path}
-                    name={original_name || original_title}
-                    date={first_air_date}
+                    poster_path={poster_path}
+                    original_name={original_name || original_title}
+                    first_air_date={first_air_date}
                     popularity={popularity}
                 />
             )}
