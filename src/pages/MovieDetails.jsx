@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import { IMAGE_URL, movieIdFetch } from "services/Fetch";
 import { useState } from "react";
 
-export const MovieDetails = () => {
+const MovieDetails = () => {
     const [movie, setMovie] = useState([])
     const { movieId } = useParams();
     const location = useLocation();
@@ -25,7 +25,7 @@ export const MovieDetails = () => {
         <main>
             <div>
                 <BackLink to={backLinkHref}>
-                    Back to search 
+                    back 
                 </BackLink>
                 <div>
                     <div>
@@ -56,3 +56,4 @@ export const MovieDetails = () => {
         </main>
     )
 }
+export default MovieDetails;

@@ -3,7 +3,7 @@ import { useState } from "react"
 import { useParams } from "react-router-dom";
 import { castFetch, IMAGE_URL } from "services/Fetch";
 
-export const Cast = () => {
+const Cast = () => {
     const [cast, setCast] = useState([]);
     const { movieId } = useParams();
 
@@ -30,3 +30,4 @@ export const Cast = () => {
         </main>
     )
 }
+export default Cast;

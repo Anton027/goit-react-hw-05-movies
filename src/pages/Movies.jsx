@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { useState } from "react"
 import { searchMovieFetch } from "services/Fetch";
 
-export const Movies = () => {
+const Movies = () => {
     const [page,setPage] = useState(1);
     const [movies, setMovies] = useState([]);
     const [movieName, setMovieName] = useState('');
@@ -61,3 +61,5 @@ export const Movies = () => {
         </main>
     )
 }
+
+export default Movies;

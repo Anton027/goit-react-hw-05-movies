@@ -4,7 +4,7 @@ import { useEffect } from "react"
 import { Link, useLocation } from "react-router-dom";
 import { trendingMoviesFetch } from "services/Fetch";
 
-export const Home = () => {
+const Home = () => {
     const [movies, setMovies] = useState([]);
     const [page] = useState(1);
     const location = useLocation();
@@ -34,3 +34,5 @@ export const Home = () => {
         </main>
     )
 }
+
+export default Home;
