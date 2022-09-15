@@ -1,17 +1,58 @@
 import { BackLink } from "components/BackLink/BackLink";
-import {  useLocation } from "react-router-dom";
+import {  useLocation,useParams } from "react-router-dom";
+import { Suspense } from "react";
+import { Link, Outlet } from "react-router-dom";
+import { useEffect } from "react";
+import { IMAGE_URL, movieIdFetch } from "services/Fetch";
+import { useState } from "react";
 
 export const MovieDetails = () => {
-    // const { id } = useParams();
+    const [movie, setMovie] = useState([])
+    const { movieId } = useParams();
     const location = useLocation();
     const backLinkHref = location.state?.from ?? "/movies";
+
+    useEffect(() => {
+        movieIdFetch(movieId).then(movie => {
+            setMovie(movie);
+        })
+    }, [movieId])
+
+    const genres = movie.genres;
+
     return (
+        
         <main>
             <div>
                 <BackLink to={backLinkHref}>
-                    Back to gallery
+                    Back to search 
                 </BackLink>
+                <div>
+                    <div>
+                        <h3>{movie.title}</h3>
+                        <img src={`${IMAGE_URL}${movie.poster_path}`} alt={movie.title} />
+                    </div>
+                    <div>
+                        <p>User Score: {Math.round(movie.vote_average * 10)} %</p>
+                        <h4>Overview</h4>
+                        <p>{movie.overview}</p>
+                        <h4>Genres:</h4>
+                        <p>{genres && genres.map(genre => genre.name).join(', ')}</p>
+                    </div>
+                </div>
             </div>
+
+            <ul>
+                <li>
+                    <Link to="cast" state={location.state}>Cast</Link>
+                </li>
+                <li>
+                    <Link to="review" state={location.state}>Reviews</Link>
+                </li>
+            </ul>
+            <Suspense fallback={<div>Loading subpage...</div>}>
+                <Outlet />
+            </Suspense>
         </main>
     )
 }

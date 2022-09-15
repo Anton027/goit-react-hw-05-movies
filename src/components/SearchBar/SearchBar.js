@@ -1,17 +1,25 @@
-export function Searchbar({ value, onChange,onSubmit }) {
+import { useState } from "react";
+
+export function Searchbar({ onSubmit }) {
+    const [movieName, setMovieName] = useState('');
+
+    const handleOnChange = (e) => {
+        setMovieName(e.currentTarget.value)
+    }
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(e.currentTarget.input.value);
-        onSubmit(value);
+        
+        onSubmit(movieName);
+        setMovieName('');
     }
     return (
         <div>
             <form onSubmit={handleSubmit}>
                 <input
-                        name="input"
+                        name="moviename"
                         type="text"
-                        value={value}
-                        onChange={(e) => onChange(e.currentTarget.value)}
+                        value={movieName}
+                        onChange={handleOnChange}
                         autoFocus
                         placeholder="Search images and photos"
                 />
