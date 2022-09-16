@@ -1,3 +1,4 @@
+// https://via.placeholder.com/960x240
 import { BackLink } from "components/BackLink/BackLink";
 import {  useLocation,useParams } from "react-router-dom";
 import { Suspense } from "react";
@@ -30,14 +31,17 @@ const MovieDetails = () => {
                 <div>
                     <div>
                         <h3>{movie.title}</h3>
-                        <img src={`${IMAGE_URL}${movie.poster_path}`} alt={movie.title} />
+                        {movie.poster_path ? <img src={`${IMAGE_URL}${movie.poster_path}`} alt={movie.title} />
+                        : <img src="https://via.placeholder.com/300x450" alt={movie.title} />
+                    }
+                        
                     </div>
                     <div>
                         <p>User Score: {Math.round(movie.vote_average * 10)} %</p>
                         <h4>Overview</h4>
                         <p>{movie.overview}</p>
                         <h4>Genres:</h4>
-                        <p>{genres && genres.map(genre => genre.name).join(', ')}</p>
+                        {genres ? <p>{genres.map(genre => genre.name).join(', ')}</p> : <p>No found</p>}
                     </div>
                 </div>
             </div>

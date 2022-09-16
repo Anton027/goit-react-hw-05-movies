@@ -7,14 +7,7 @@ const Movies = lazy(() => import('../pages/Movies'));
 const MovieDetails = lazy(() => import('../pages/MovieDetails'));
 const Cast = lazy(() => import('./Cast/Cast'));
 const Review = lazy(() => import('./Review/Review'));
-
-// const Home = createAsyncComponent("../pages/Home");
-// const Movies = createAsyncComponent("../pages/Movies");
-// const MovieDetails = createAsyncComponent("../pages/MovieDetails");
-// const Cast = createAsyncComponent("./Cast/Cast");
-// const Review = createAsyncComponent("./Review/Review");
-
-
+const NotFound = lazy(() => import('../pages/NotFound'))
 export const App = () => {
   return (
 
@@ -28,6 +21,7 @@ export const App = () => {
             <Route path="review" element={<Review />}></Route>
           </Route>
         </Route>
+        <Route path="*" element={<NotFound />} />
       </Routes>
     
   );

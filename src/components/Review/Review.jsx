@@ -15,12 +15,18 @@ const Review = () => {
     return (
         <main>
             <ul>
-                {review.map(author => 
+                {review && review.length > 0 ? 
+                    (review.map(author => 
+                    <li key={author.id}>
+                        <p>Author: {author.author}</p>
+                        <p>{author.content}</p>
+                    </li>)) : (<p> No review</p>)}
+                {/* {review.map(author => 
                     <li key={author.id}>
                         <p>Author: {author.author}</p>
                         <p>{author.content}</p>
                     </li>
-                )}
+                )} */}
             </ul>
         </main>
     )

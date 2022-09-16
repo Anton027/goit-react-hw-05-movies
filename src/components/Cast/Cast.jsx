@@ -20,7 +20,10 @@ const Cast = () => {
                 {cast.length > 0 &&
                     cast.map(actor => 
                         <li key={actor.id}>
-                            <img src={`${IMAGE_URL}${actor.profile_path}`} alt={actor.name} />
+                            {actor.profile_path ? <img src={`${IMAGE_URL}${actor.profile_path}`} alt={actor.name} />
+                                : <img src="https://via.placeholder.com/300x450" alt={actor.name} />
+                            }
+                            
                             <p>{actor.name}</p>
                             <p>{actor.character}</p>
                         </li>
