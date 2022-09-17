@@ -1,4 +1,4 @@
-// https://via.placeholder.com/960x240
+
 import { BackLink } from "components/BackLink/BackLink";
 import {  useLocation,useParams } from "react-router-dom";
 import { Suspense } from "react";
@@ -10,7 +10,9 @@ import { useState } from "react";
 const MovieDetails = () => {
     const [movie, setMovie] = useState([])
     const { movieId } = useParams();
+
     const location = useLocation();
+
     const backLinkHref = location.state?.from ?? "/movies";
 
     useEffect(() => {

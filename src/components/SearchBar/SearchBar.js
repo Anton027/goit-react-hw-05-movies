@@ -1,16 +1,17 @@
-import { useState } from "react";
+import { useSearchParams } from "react-router-dom";
 
 export function Searchbar({ onSubmit }) {
-    const [movieName, setMovieName] = useState('');
+    const [searchParams, setSearchParams] = useSearchParams();
+    const moviename = searchParams.get('moviename');
 
     const handleOnChange = (e) => {
-        setMovieName(e.currentTarget.value)
+        setSearchParams({ moviename: e.currentTarget.value})
     }
     const handleSubmit = (e) => {
         e.preventDefault();
-        
-        onSubmit(movieName);
-        setMovieName('');
+        const form = e.currentTarget;
+        setSearchParams({ moviename: form.elements.moviename.value})
+        onSubmit(moviename);
     }
     return (
         <div>
@@ -18,7 +19,7 @@ export function Searchbar({ onSubmit }) {
                 <input
                         name="moviename"
                         type="text"
-                        value={movieName}
+                        // value={movieName}
                         onChange={handleOnChange}
                         autoFocus
                         placeholder="Search images and photos"

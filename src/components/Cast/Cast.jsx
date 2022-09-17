@@ -17,7 +17,7 @@ const Cast = () => {
         <main>
             <h3>Cast list</h3>
             <ul>
-                {cast.length > 0 &&
+                {cast && cast.length > 0 &&
                     cast.map(actor => 
                         <li key={actor.id}>
                             {actor.profile_path ? <img src={`${IMAGE_URL}${actor.profile_path}`} alt={actor.name} />

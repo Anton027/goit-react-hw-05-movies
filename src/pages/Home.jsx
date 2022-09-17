@@ -1,4 +1,4 @@
-// import { MoviesList } from "components/MoviesList/MoviesList";
+
 import { useState } from "react";
 import { useEffect } from "react"
 import { Link, useLocation } from "react-router-dom";
