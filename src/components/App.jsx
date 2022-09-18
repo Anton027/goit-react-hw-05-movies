@@ -10,7 +10,6 @@ const Review = lazy(() => import('./Review/Review'));
 const NotFound = lazy(() => import('../pages/NotFound'))
 export const App = () => {
   return (
-
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<Home />}>
@@ -23,6 +22,5 @@ export const App = () => {
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
-    
   );
 };

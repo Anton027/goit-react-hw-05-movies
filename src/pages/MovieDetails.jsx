@@ -35,8 +35,7 @@ const MovieDetails = () => {
                         <h3>{movie.title}</h3>
                         {movie.poster_path ? <img src={`${IMAGE_URL}${movie.poster_path}`} alt={movie.title} />
                         : <img src="https://via.placeholder.com/300x450" alt={movie.title} />
-                    }
-                        
+                        }
                     </div>
                     <div>
                         <p>User Score: {Math.round(movie.vote_average * 10)} %</p>

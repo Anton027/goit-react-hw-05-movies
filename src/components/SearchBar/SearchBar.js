@@ -19,7 +19,6 @@ export function Searchbar({ onSubmit }) {
                 <input
                         name="moviename"
                         type="text"
-                        // value={movieName}
                         onChange={handleOnChange}
                         autoFocus
                         placeholder="Search images and photos"
